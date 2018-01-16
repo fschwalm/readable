@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "env": {
+    "jasmine": true,
+    "jest": true,
+    "browser": true
+  },
+  "globals": {
+    "fetch": false
+  }
+}
