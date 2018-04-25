@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../../actions';
 
 class App extends Component {
-
   async componentDidMount() {
     this.props.onFetchCategories();
   }
 
   render() {
-    const { posts } = this.state;
+    // const { posts } = this.state;
     return (
       <div className="App">
         <div>
@@ -17,15 +16,17 @@ class App extends Component {
             {this.props.categories.map(category => <li key={category.name}> {category.name} </li>)}
           </ul>
         </div>
-        <div className="post-list-container">
-          {posts.map(post => (
-            <article key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.body}</p>
-              <span className="post-category">{post.category}</span>
-            </article>
-          ))}
-        </div>
+        {/*
+      <div className="post-list-container">
+      {posts.map(post => (
+        <article key={post.id}>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+        <span className="post-category">{post.category}</span>
+        </article>
+      ))}
+      </div>
+    */}
       </div>
     );
   }
