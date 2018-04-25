@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import { getCategories } from '../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
-  dispatch(requestCategories);
+  dispatch(requestCategories());
   try {
     const response = await getCategories();
     dispatch(receiveCategories(response));
