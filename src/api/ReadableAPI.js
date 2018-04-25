@@ -94,8 +94,8 @@ export const deleteComment = commentID =>
 
 export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
-    .then(res => res.json())
-    .catch(error => error);
+    .then(res => res.json());
+// .catch(error => error);
 
 export const editPost = post =>
   fetch(`${api}/posts/${post.id}`, {
