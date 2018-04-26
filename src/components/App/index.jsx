@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories, fetchPosts, upVotebyPostId } from '../../actions';
+import { fetchCategories, fetchPosts, upVotebyPostId } from '../../store/actions';
 
 class App extends Component {
   async componentDidMount() {

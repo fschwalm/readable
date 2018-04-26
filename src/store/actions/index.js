@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { getAllCategories, getPosts, upVotePost } from '../api/ReadableAPI';
+import { getAllCategories, getPosts, upVotePost } from '../../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
   dispatch(requestCategories());

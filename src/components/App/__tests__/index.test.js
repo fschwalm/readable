@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import App from './..';
 import * as ReadableAPI from '../../../api/ReadableAPI';
-import configureStore from '../../../configureStore';
+import configureStore from '../../../store/configureStore';
 
 jest.mock('../../../api/ReadableAPI');
 
