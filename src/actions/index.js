@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
-import { getCategories } from '../api/ReadableAPI';
+import { getAllCategories } from '../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
   dispatch(requestCategories());
   try {
-    const response = await getCategories();
+    const response = await getAllCategories();
     dispatch(receiveCategories(response));
   } catch (error) {
     dispatch(errorOnFetchCategories(error));

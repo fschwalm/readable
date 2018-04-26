@@ -1,0 +1,17 @@
+// posts/:id
+// body:
+//    option - [String]: Either "upVote" or "downVote".
+
+// returns the updated post
+
+{
+  "id": "456465465465465",
+  "timestamp": 1468479767190,
+  "title": "Learn Redux with fagner",
+  "body": "best price",
+  "author": "thingone",
+  "category": "redux",
+  "voteScore": 6,
+  "deleted": false,
+  "commentCount": 0
+}
