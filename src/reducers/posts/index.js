@@ -30,6 +30,20 @@ const postsReducer = (state = initialState, action) => {
         fetchPostsErrorMessage: action.payload.message,
       };
 
+    case actionTypes.UPDATE_POST_VOTE_COUNT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post.id !== action.post.id) {
+            return post;
+          }
+          return {
+            ...post,
+            ...action.post,
+          };
+        }),
+      };
+
     default:
       return state;
   }

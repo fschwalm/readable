@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories, fetchPosts } from '../../actions';
+import { fetchCategories, fetchPosts, upVotebyPostId } from '../../actions';
 
 class App extends Component {
   async componentDidMount() {
@@ -16,11 +16,17 @@ class App extends Component {
           <ul>
             {this.props.categories.map(category => <li key={category.name}> {category.name} </li>)}
             <div className="post-list-container">
+              <p>Showing all: {this.props.posts.length} posts.</p>
               {this.props.posts.map(post => (
                 <article key={post.id}>
                   <h3>{post.title}</h3>
                   <p>{post.body}</p>
                   <span className="post-category">{post.category}</span>
+                  <span>Comments: </span>
+                  <span>{post.commentCount}</span>
+                  <br />
+                  <span>Vote score: </span>
+                  <span onClick={() => this.props.onUpVotePost(post.id)}>{post.voteScore}</span>
                 </article>
               ))}
             </div>
@@ -45,6 +51,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onFetchCategories: () => dispatch(fetchCategories()),
   onFetchPosts: () => dispatch(fetchPosts()),
+  onUpVotePost: id => dispatch(upVotebyPostId(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

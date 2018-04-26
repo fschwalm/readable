@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { getAllCategories, getPosts } from '../api/ReadableAPI';
+import { getAllCategories, getPosts, upVotePost } from '../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
   dispatch(requestCategories());
@@ -49,10 +49,25 @@ const errorOnFetchPosts = payload => ({
   payload,
 });
 
+const updatePostVoteCount = post => ({
+  type: actionTypes.UPDATE_POST_VOTE_COUNT,
+  post,
+});
+
+const upVotebyPostId = id => async (dispatch) => {
+  // dispatch(requestPosts());
+  try {
+    const response = await upVotePost(id);
+    dispatch(updatePostVoteCount(response));
+  } catch (error) {
+    dispatch(errorOnFetchPosts(error));
+  }
+};
 export {
   fetchCategories,
   requestCategories,
   receiveCategories,
   errorOnFetchCategories,
   fetchPosts,
+  upVotebyPostId,
 };
