@@ -14,7 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "coverage": "react-scripts test --coverage --env=jsdom"
+    "coverage": "react-scripts test --coverage --env=jsdom",
+    "coveralls": "npm run coverage && node node_modules/.bin/coveralls < coverage/lcov.info"
   },
   "devDependencies": {
     "deep-freeze": "0.0.1",
@@ -30,7 +31,8 @@
     "istanbul-api": "1.2.2",
     "istanbul-reports": "1.1.4",
     "jest": "^22.4.3",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "^1.1.4",
+    "coveralls": "^3.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
