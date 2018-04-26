@@ -25,4 +25,4 @@ const errorOnFetchCategories = payload => ({
   payload,
 });
 
-export { fetchCategories };
+export { fetchCategories, requestCategories, receiveCategories, errorOnFetchCategories };
