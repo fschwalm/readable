@@ -1,6 +1,6 @@
 import { api, headers } from '../apiUtils';
 
-export const getPosts = async () => fetch(`${api}/posts`, { headers }).then(res => res.json());
+export const getPosts = () => fetch(`${api}/posts`, { headers }).then(res => res.json());
 
 export const getAllPostsByCategory = category =>
   fetch(`${api}/${category}/posts/`, {

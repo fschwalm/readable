@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import { getAllCategories } from '../api/ReadableAPI';
+import { getAllCategories, getPosts } from '../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
   dispatch(requestCategories());
@@ -25,4 +25,34 @@ const errorOnFetchCategories = payload => ({
   payload,
 });
 
-export { fetchCategories, requestCategories, receiveCategories, errorOnFetchCategories };
+const fetchPosts = () => async (dispatch) => {
+  dispatch(requestPosts());
+  try {
+    const response = await getPosts();
+    dispatch(receivePosts(response));
+  } catch (error) {
+    dispatch(errorOnFetchPosts(error));
+  }
+};
+
+const requestPosts = () => ({
+  type: actionTypes.FETCH_POSTS,
+});
+
+const receivePosts = payload => ({
+  type: actionTypes.RECEIVE_POSTS,
+  payload,
+});
+
+const errorOnFetchPosts = payload => ({
+  type: actionTypes.ERROR_ON_FETCH_POSTS,
+  payload,
+});
+
+export {
+  fetchCategories,
+  requestCategories,
+  receiveCategories,
+  errorOnFetchCategories,
+  fetchPosts,
+};

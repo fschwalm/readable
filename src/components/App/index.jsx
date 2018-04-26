@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../../actions';
+import { fetchCategories, fetchPosts } from '../../actions';
 
 class App extends Component {
   async componentDidMount() {
     this.props.onFetchCategories();
+    this.props.onFetchPosts();
   }
 
   render() {
@@ -14,33 +15,36 @@ class App extends Component {
         <div>
           <ul>
             {this.props.categories.map(category => <li key={category.name}> {category.name} </li>)}
+            <div className="post-list-container">
+              {this.props.posts.map(post => (
+                <article key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.body}</p>
+                  <span className="post-category">{post.category}</span>
+                </article>
+              ))}
+            </div>
           </ul>
         </div>
-        {/*
-      <div className="post-list-container">
-      {posts.map(post => (
-        <article key={post.id}>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-        <span className="post-category">{post.category}</span>
-        </article>
-      ))}
-      </div>
-    */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
-  isFetchingCategories: state.isFetchingCategories,
-  hasErrorOnFetchCategories: state.hasErrorOnFetchCategories,
-  fetchCategoriesErrorMessage: state.fetchCategoriesErrorMessage,
+  categories: state.categoriesReducer.categories,
+  isFetchingCategories: state.categoriesReducer.isFetchingCategories,
+  hasErrorOnFetchCategories: state.categoriesReducer.hasErrorOnFetchCategories,
+  fetchCategoriesErrorMessage: state.categoriesReducer.fetchCategoriesErrorMessage,
+  posts: state.postsReducer.posts,
+  isFetchingPosts: state.postsReducer.isFetchingPosts,
+  hasErrorOnFetchPosts: state.postsReducer.hasErrorOnFetchPosts,
+  fetchPostsErrorMessage: state.postsReducer.fetchPostsErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
   onFetchCategories: () => dispatch(fetchCategories()),
+  onFetchPosts: () => dispatch(fetchPosts()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
