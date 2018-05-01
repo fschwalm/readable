@@ -1,0 +1,17 @@
+.post-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-list-container > article {
+  position: relative;
+  padding: 1rem;
+  margin-top: 1em;
+  border: 1px solid burlywood;
+}
+
+.post-category {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
