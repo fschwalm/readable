@@ -7,6 +7,7 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import PostsDisplayList from './components/PostsDisplayList';
+import PostPage from './components/PostPage';
 
 const store = configureStore();
 
@@ -15,7 +16,8 @@ ReactDOM.render(
     <Router>
       <React.Fragment>
         <Route path="/" component={App} />
-        <Route path="/:category?" component={PostsDisplayList} />
+        <Route exact path="/:category?" component={PostsDisplayList} />
+        <Route path="/:category/:id" component={PostPage} />
       </React.Fragment>
     </Router>
   </Provider>,

@@ -15,7 +15,7 @@ class MenuBar extends Component {
         <NavLink to="/">all</NavLink>
         {categories.map(category => (
           <div key={category.name}>
-            <NavLink to={category.path}>{category.name} </NavLink>
+            <NavLink to={`/${category.path}`}>{category.name} </NavLink>
           </div>
         ))}
       </div>

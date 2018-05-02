@@ -17,10 +17,10 @@ class PostsDisplayList extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, category } = this.props;
     return (
       <div className="post-list-container">
-        <p>Showing all: {posts.length} posts.</p>
+        <p>Showing {category}: {posts.length} posts.</p>
         {posts.map(post => <Post key={post.id} post={post} />)}
       </div>
     );
