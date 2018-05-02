@@ -6,13 +6,17 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
+import PostsDisplayList from './components/PostsDisplayList';
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path="/" component={App} />
+      <React.Fragment>
+        <Route path="/" component={App} />
+        <Route path="/:category?" component={PostsDisplayList} />
+      </React.Fragment>
     </Router>
   </Provider>,
   document.getElementById('root'),

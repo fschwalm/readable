@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../store/actions';
 
@@ -11,7 +12,12 @@ class MenuBar extends Component {
     const { categories } = this.props;
     return (
       <div>
-        <ul>{categories.map(category => <li key={category.name}> {category.name} </li>)}</ul>
+        <NavLink to="/">all</NavLink>
+        {categories.map(category => (
+          <div key={category.name}>
+            <NavLink to={category.path}>{category.name} </NavLink>
+          </div>
+        ))}
       </div>
     );
   }

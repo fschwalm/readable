@@ -1,5 +1,10 @@
 import * as actionTypes from './actionTypes';
-import { getAllCategories, getPosts, upVotePost } from '../../api/ReadableAPI';
+import {
+  getAllCategories,
+  getPosts,
+  upVotePost,
+  getAllPostsByCategory,
+} from '../../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {
   dispatch(requestCategories());
@@ -25,10 +30,15 @@ const errorOnFetchCategories = payload => ({
   payload,
 });
 
-const fetchPosts = () => async (dispatch) => {
+const fetchPosts = category => async (dispatch) => {
   dispatch(requestPosts());
   try {
-    const response = await getPosts();
+    let response;
+    if (category === 'all') {
+      response = await getPosts();
+    } else {
+      response = await getAllPostsByCategory(category);
+    }
     dispatch(receivePosts(response));
   } catch (error) {
     dispatch(errorOnFetchPosts(error));
