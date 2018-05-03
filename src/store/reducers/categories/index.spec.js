@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import categoriesReducer from './';
-import { requestCategories, receiveCategories, errorOnFetchCategories } from '../../actions';
+import { requestCategories, receiveCategories, errorOnFetchCategories } from '../../actions/categories';
 import GET_categories from '../../../api/categories/__tests__/contracts/GET_categories.json';
 
 describe('categories reducer', () => {

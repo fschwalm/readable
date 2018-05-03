@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import App from './..';
 import * as ReadableAPI from '../../../api/ReadableAPI';
@@ -21,7 +22,9 @@ describe('App component', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <MemoryRouter initialEntries={['/']} initialIndex={0}>
+          <App />
+        </MemoryRouter>
       </Provider>,
       div,
     );
