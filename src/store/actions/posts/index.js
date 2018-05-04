@@ -1,10 +1,5 @@
 import * as actionTypes from '../actionTypes';
-import {
-  getPosts,
-  upVotePost,
-  getAllPostsByCategory,
-  downVotePost,
-} from '../../../api/ReadableAPI';
+import { getPosts, getAllPostsByCategory } from '../../../api/ReadableAPI';
 
 const fetchPosts = category => async (dispatch) => {
   try {
@@ -35,37 +30,4 @@ const errorOnFetchPosts = payload => ({
   payload,
 });
 
-const incrementVotePost = id => async (dispatch) => {
-  dispatch(requestIncrementVotePost());
-  try {
-    const response = await upVotePost(id);
-    dispatch(updatePost(response));
-  } catch (error) {
-    // dispatch(errorOnFetchPosts(error));
-  }
-};
-
-const requestIncrementVotePost = () => ({
-  type: actionTypes.REQUEST_INCREMENT_VOTE_POST,
-});
-
-const decrementVotePost = id => async (dispatch) => {
-  dispatch(requestDecrementVotePost());
-  try {
-    const response = await downVotePost(id);
-    dispatch(updatePost(response));
-  } catch (error) {
-    // dispatch(errorOnFetchPosts(error));
-  }
-};
-
-const requestDecrementVotePost = () => ({
-  type: actionTypes.REQUEST_DECREMENT_VOTE_POST,
-});
-
-const updatePost = post => ({
-  type: actionTypes.UPDATE_POST,
-  post,
-});
-
-export { fetchPosts, incrementVotePost, decrementVotePost };
+export { fetchPosts };

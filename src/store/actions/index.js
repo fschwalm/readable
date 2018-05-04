@@ -1,3 +1,5 @@
 export { fetchCategories } from './categories';
 
-export { fetchPosts, incrementVotePost, decrementVotePost } from './posts';
+export { fetchPosts } from './posts';
+
+export { incrementVotePost, decrementVotePost } from './post';
