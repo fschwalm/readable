@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CommentList from '../CommentsList';
 import Post from '../Post';
-import { fetchPostById } from '../../store/actions/post';
+import { fetchPostById } from '../../store/actions';
 
 const comments = [
   {

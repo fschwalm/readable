@@ -2,4 +2,4 @@ export { fetchCategories } from './categories';
 
 export { fetchPosts } from './posts';
 
-export { incrementVotePost, decrementVotePost } from './post';
+export { incrementVotePost, decrementVotePost, fetchPostById, deletePostById } from './post';
