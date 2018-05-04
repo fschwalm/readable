@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { incrementVotePost, decrementVotePost } from '../../store/actions';
 import Score from '../Score';
 
+const getReadableDate = timestamp => new Date(timestamp).toLocaleDateString();
+
 function Post({
   post, onIncrementVotePost, onDecrementVotePost, match,
 }) {
@@ -12,6 +14,7 @@ function Post({
     <div className="post-list-container">
       <article key={post.id}>
         <span className="post-category">{post.category}</span>
+        <span className="delete-button"><button onClick={() => null}>X</button></span>
         <h3>
           <Link to={`${matchUrl}/${post.id}`}>{post.title}</Link>
         </h3>
@@ -24,6 +27,11 @@ function Post({
           onIncrementScore={() => onIncrementVotePost(post.id)}
           onDecrementScore={() => onDecrementVotePost(post.id)}
         />
+        <p>
+          <span>By: </span>
+          {post.author}
+        </p>
+        <span>{getReadableDate(post.timestamp)}</span>
       </article>
     </div>
   );

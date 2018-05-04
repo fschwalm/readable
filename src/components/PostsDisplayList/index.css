@@ -15,3 +15,14 @@
   left: 0px;
   top: 0px;
 }
+
+.delete-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.delete-button button{
+  cursor: pointer;
+  background-color:red;
+}
