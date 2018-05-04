@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import CommentList from '../CommentsList';
 import Post from '../Post';
+import { fetchPostById } from '../../store/actions/post';
 
 const comments = [
   {
@@ -25,27 +27,30 @@ const comments = [
   },
 ];
 
-const post = {
-  id: '8xf0y6ziyjabvozdd253nd',
-  timestamp: 1467166872634,
-  title: 'Udacity is the best place to learn React',
-  body: 'Everyone says so after all.',
-  author: 'thingtwo',
-  category: 'react',
-  voteScore: 44,
-  deleted: false,
-  commentCount: 2,
-};
-
-function PostPage({ match }) {
-  console.log(match.params.id);
-
-  return (
-    <div className="post-list-container">
-      <Post post={post} />
-      <CommentList comments={comments} />
-    </div>
-  );
+class PostPage extends React.Component {
+  async componentDidMount() {
+    this.props.onFetchPostById(this.props.match.params.id);
+  }
+  render() {
+    return (
+      <div className="post-list-container">
+        {/* TODO: Try find a better solution to post[0]*/}
+        {this.props.isFetchingPost === false && <Post post={this.props.post[0]} />}
+        <CommentList comments={comments} />
+      </div>
+    );
+  }
 }
 
-export default PostPage;
+const mapStateToProps = state => ({
+  post: state.postsReducer.posts,
+  isFetchingPost: state.postsReducer.isFetchingPost,
+  hasErrorOnFetchPost: state.postsReducer.hasErrorOnFetchPost,
+  fetchPostErrorMessage: state.postsReducer.fetchPostErrorMessage,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onFetchPostById: id => dispatch(fetchPostById(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostPage);
