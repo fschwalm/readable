@@ -10,14 +10,23 @@ function Post({
   post, onIncrementVotePost, onDecrementVotePost, match,
 }) {
   const matchUrl = match.url === '/' ? `/${post.category}` : match.url;
+  console.log(match);
+
   return (
     <div className="post-list-container">
       <article key={post.id}>
         <span className="post-category">{post.category}</span>
-        <span className="delete-button"><button onClick={() => null}>X</button></span>
-        <h3>
-          <Link to={`${matchUrl}/${post.id}`}>{post.title}</Link>
-        </h3>
+        <span className="delete-button">
+          <button onClick={() => null}>X</button>
+        </span>
+        {/* TODO: Try use a HOC for this logic */}
+        {match.path === '/:category/:id' ? (
+          <h3>{post.title}</h3>
+        ) : (
+          <h3>
+            <Link to={`${matchUrl}/${post.id}`}>{post.title}</Link>
+          </h3>
+        )}
         <p>{post.body}</p>
         <span>Comments: </span>
         <span>{post.commentCount}</span>

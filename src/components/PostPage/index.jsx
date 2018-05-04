@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentList from '../CommentsList';
+import Post from '../Post';
 
 const comments = [
   {
@@ -24,12 +25,24 @@ const comments = [
   },
 ];
 
+const post = {
+  id: '8xf0y6ziyjabvozdd253nd',
+  timestamp: 1467166872634,
+  title: 'Udacity is the best place to learn React',
+  body: 'Everyone says so after all.',
+  author: 'thingtwo',
+  category: 'react',
+  voteScore: 44,
+  deleted: false,
+  commentCount: 2,
+};
+
 function PostPage({ match }) {
   console.log(match);
 
   return (
     <div className="post-list-container">
-      <h1>It works</h1>
+      <Post post={post} />
       <CommentList comments={comments} />
     </div>
   );
