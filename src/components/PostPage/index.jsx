@@ -38,7 +38,7 @@ const post = {
 };
 
 function PostPage({ match }) {
-  console.log(match);
+  console.log(match.params.id);
 
   return (
     <div className="post-list-container">

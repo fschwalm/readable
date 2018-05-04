@@ -10,6 +10,7 @@ export {
 export {
   getPosts,
   getAllPostsByCategory,
+  getPostById,
   addPost,
   editPost,
   deletePost,

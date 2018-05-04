@@ -10,8 +10,6 @@ function Post({
   post, onIncrementVotePost, onDecrementVotePost, match,
 }) {
   const matchUrl = match.url === '/' ? `/${post.category}` : match.url;
-  console.log(match);
-
   return (
     <div className="post-list-container">
       <article key={post.id}>
