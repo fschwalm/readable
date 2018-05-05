@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { incrementVotePost, decrementVotePost } from '../../store/actions';
+import { incrementVotePost, decrementVotePost, deletePostById } from '../../store/actions';
 import Score from '../Score';
 
 const propTypes = {
@@ -18,7 +18,7 @@ const defaultProps = {
 const getReadableDate = timestamp => new Date(timestamp).toLocaleDateString();
 
 function Post({
-  post, onIncrementVotePost, onDecrementVotePost, match,
+  post, onIncrementVotePost, onDecrementVotePost, match, onDeletePost,
 }) {
   const matchUrl = match.url === '/' ? `/${post.category}` : match.url;
   return (
@@ -26,7 +26,7 @@ function Post({
       <article key={post.id}>
         <span className="post-category">{post.category}</span>
         <span className="delete-button">
-          <button onClick={() => null}>X</button>
+          <button onClick={() => onDeletePost(post.id)}>X</button>
         </span>
         {/* TODO: Try use a HOC for this logic */}
         {match.path === '/:category/:id' ? (
@@ -58,6 +58,7 @@ function Post({
 const mapDispatchToProps = dispatch => ({
   onIncrementVotePost: id => dispatch(incrementVotePost(id)),
   onDecrementVotePost: id => dispatch(decrementVotePost(id)),
+  onDeletePost: id => dispatch(deletePostById(id)),
 });
 
 Post.propTypes = propTypes;
