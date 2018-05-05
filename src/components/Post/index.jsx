@@ -1,8 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { incrementVotePost, decrementVotePost } from '../../store/actions';
 import Score from '../Score';
+
+const propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+  }),
+};
+const defaultProps = {
+  post: {},
+};
 
 const getReadableDate = timestamp => new Date(timestamp).toLocaleDateString();
 
@@ -48,5 +59,8 @@ const mapDispatchToProps = dispatch => ({
   onIncrementVotePost: id => dispatch(incrementVotePost(id)),
   onDecrementVotePost: id => dispatch(decrementVotePost(id)),
 });
+
+Post.propTypes = propTypes;
+Post.defaultProps = defaultProps;
 
 export default withRouter(connect(null, mapDispatchToProps)(Post));

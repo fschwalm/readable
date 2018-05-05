@@ -1,8 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from '../CommentsList';
 import Post from '../Post';
 import { fetchPostById } from '../../store/actions';
+
+const propTypes = {
+  isFetchingPost: PropTypes.bool,
+};
+
+const defaultProps = {
+  isFetchingPost: false,
+};
 
 const comments = [
   {
@@ -52,5 +61,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onFetchPostById: id => dispatch(fetchPostById(id)),
 });
+
+PostPage.propTypes = propTypes;
+PostPage.defaultProps = defaultProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage);

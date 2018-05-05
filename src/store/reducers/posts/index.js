@@ -1,11 +1,11 @@
 import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
-  isFetchingpost: false,
+  isFetchingPost: false,
   hasErrorOnFetchpost: false,
   fetchPostErrorMessage: '',
 
-  isFetchingposts: false,
+  isFetchingPosts: false,
   hasErrorOnFetchposts: false,
   fetchpostsErrorMessage: '',
 
@@ -27,6 +27,14 @@ const postsReducer = (state = initialState, action) => {
         isFetchingPosts: false,
       };
 
+    case actionTypes.ERROR_ON_FETCH_POSTS:
+      return {
+        ...state,
+        isFetchingPosts: false,
+        hasErrorOnFetchPosts: true,
+        fetchPostsErrorMessage: action.payload.message,
+      };
+
     case actionTypes.FETCH_POST_BY_ID:
       return {
         ...state,
@@ -46,14 +54,6 @@ const postsReducer = (state = initialState, action) => {
         isFetchingPost: false,
         hasErrorOnFetchPost: true,
         fetchPostErrorMessage: action.payload.message,
-      };
-
-    case actionTypes.ERROR_ON_FETCH_POSTS:
-      return {
-        ...state,
-        isFetchingPosts: false,
-        hasErrorOnFetchPosts: true,
-        fetchPostsErrorMessage: action.payload.message,
       };
 
     case actionTypes.UPDATE_POST:
