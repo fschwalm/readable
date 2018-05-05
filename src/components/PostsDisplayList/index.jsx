@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { fetchPosts } from '../../store/actions';
 import Post from '../Post';
 import './index.css';
@@ -19,9 +19,16 @@ class PostsDisplayList extends Component {
   render() {
     const { posts, category } = this.props;
     return (
-      <div className="post-list-container">
-        <p>Showing {category}: {posts.length} posts.</p>
-        {posts.map(post => <Post key={post.id} post={post} />)}
+      <div>
+        <div className="post-list-container">
+          <p>
+            Showing {category}: {posts.length} posts.
+          </p>
+          {posts.map(post => <Post key={post.id} post={post} />)}
+        </div>
+        <div className="add-post">
+          <Link to="posts/new">+</Link>
+        </div>
       </div>
     );
   }

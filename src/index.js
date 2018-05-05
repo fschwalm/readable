@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './components/App';
@@ -8,17 +8,21 @@ import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
 import PostsDisplayList from './components/PostsDisplayList';
 import PostPage from './components/PostPage';
+import NewPost from './components/NewPost';
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <React.Fragment>
+      <div>
         <Route path="/" component={App} />
-        <Route exact path="/:category?" component={PostsDisplayList} />
-        <Route path="/:category/:id" component={PostPage} />
-      </React.Fragment>
+        <Switch>
+          <Route path="/posts/new" component={NewPost} />
+          <Route path="/:category/:id" component={PostPage} />
+          <Route path="/:category?" component={PostsDisplayList} />
+        </Switch>
+      </div>
     </Router>
   </Provider>,
   document.getElementById('root'),

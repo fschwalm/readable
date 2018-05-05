@@ -26,3 +26,9 @@
   cursor: pointer;
   background-color:red;
 }
+
+.add-post {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
