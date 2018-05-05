@@ -2,11 +2,11 @@ import * as actionTypes from '../../actions/actionTypes';
 
 const initialState = {
   isFetchingPost: false,
-  hasErrorOnFetchpost: false,
+  hasErrorOnFetchPost: false,
   fetchPostErrorMessage: '',
 
   isFetchingPosts: false,
-  hasErrorOnFetchposts: false,
+  hasErrorOnFetchPosts: false,
   fetchPostsErrorMessage: '',
 
   isDeletingPost: false,
