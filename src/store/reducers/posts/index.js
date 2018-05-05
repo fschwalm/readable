@@ -7,7 +7,11 @@ const initialState = {
 
   isFetchingPosts: false,
   hasErrorOnFetchposts: false,
-  fetchpostsErrorMessage: '',
+  fetchPostsErrorMessage: '',
+
+  isDeletingPost: false,
+  hasErrorOnDeletePost: false,
+  deletePostErrorMessage: '',
 
   posts: [],
 };
@@ -68,6 +72,19 @@ const postsReducer = (state = initialState, action) => {
             ...action.post,
           };
         }),
+      };
+
+    case actionTypes.SUCCESS_DELETE_POST_BY_ID:
+      return {
+        ...state,
+        isDeletingPost: false,
+        posts: state.posts.filter(p => p.id !== action.payload),
+      };
+
+    case actionTypes.DELETE_POST_BY_ID:
+      return {
+        ...state,
+        isDeletingPost: true,
       };
 
     default:
