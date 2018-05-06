@@ -27,7 +27,7 @@ class PostsDisplayList extends Component {
           {posts.map(post => <Post key={post.id} post={post} />)}
         </div>
         <div className="add-post">
-          <Link to="posts/new">+</Link>
+          <Link to="/posts/new">+</Link>
         </div>
       </div>
     );
