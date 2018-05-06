@@ -1,4 +1,7 @@
+import { connect } from 'react-redux';
 import React from 'react';
+import Post from './post';
+import { createPost } from '../../store/actions';
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class NewPost extends React.Component {
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.redirectToCreatedPostCategory = this.redirectToCreatedPostCategory.bind(this);
   }
 
   handleTitleChange(event) {
@@ -34,8 +38,12 @@ class NewPost extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.createPost({ ...this.state });
-    // TODO: redirect to all posts
+    this.props.onCreatePost(new Post({ ...this.state }));
+    this.redirectToCreatedPostCategory();
+  }
+
+  redirectToCreatedPostCategory() {
+    this.props.history.push(`/${this.state.category}`);
   }
 
   render() {
@@ -75,15 +83,28 @@ class NewPost extends React.Component {
           <br />
           <select value={this.state.category} onChange={this.handleCategoryChange}>
             <option value="">Select a Category</option>
-            <option value="1">Hardcoded category</option>
+            <option value="react">Hardcoded react</option>
+            <option value="redux">Hardcoded redux</option>
+            <option value="udacity">Hardcoded udacity</option>
           </select>
           <br />
           <br />
           <button disabled={!isFormValid}>Create</button>
+          {this.props.isCreatingPost && <p>Creating...</p>}
         </form>
       </div>
     );
   }
 }
 
-export default NewPost;
+const mapStateToProps = state => ({
+  isCreatingPost: state.postsReducer.isCreatingPost,
+  hasErrorCreatePost: state.postsReducer.hasErrorCreatePost,
+  createPostErrorMessage: state.postsReducer.createPostErrorMessage,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onCreatePost: post => dispatch(createPost(post)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

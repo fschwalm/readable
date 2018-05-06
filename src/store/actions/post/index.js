@@ -1,5 +1,36 @@
 import * as actionTypes from '../actionTypes';
-import { upVotePost, downVotePost, getPostById, deletePost } from '../../../api/ReadableAPI';
+import {
+  upVotePost,
+  downVotePost,
+  getPostById,
+  deletePost,
+  addPost,
+} from '../../../api/ReadableAPI';
+
+const createPost = post => async (dispatch) => {
+  dispatch(requestCreatePost());
+  try {
+    const response = await addPost(post);
+    dispatch(successfulCreatePost(response));
+  } catch (error) {
+    dispatch(errorOnCreatePost(error));
+  }
+};
+
+const requestCreatePost = () => ({
+  type: actionTypes.CREATE_POST_REQUEST,
+});
+
+const successfulCreatePost = post => ({
+  type: actionTypes.SUCCESS_CREATE_POST,
+  payload: post,
+});
+
+const errorOnCreatePost = error => ({
+  type: actionTypes.ERROR_CREATE_POST,
+  error,
+});
+
 
 const deletePostById = id => async (dispatch) => {
   dispatch(requestDeletePostById());
@@ -82,4 +113,4 @@ const updatePost = post => ({
   post,
 });
 
-export { incrementVotePost, decrementVotePost, fetchPostById, deletePostById };
+export { incrementVotePost, decrementVotePost, fetchPostById, deletePostById, createPost };

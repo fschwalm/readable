@@ -13,6 +13,10 @@ const initialState = {
   hasErrorOnDeletePost: false,
   deletePostErrorMessage: '',
 
+  isCreatingPost: false,
+  hasErrorCreatePost: false,
+  createPostErrorMessage: '',
+
   posts: [],
 };
 
@@ -37,6 +41,27 @@ const postsReducer = (state = initialState, action) => {
         isFetchingPosts: false,
         hasErrorOnFetchPosts: true,
         fetchPostsErrorMessage: action.payload.message,
+      };
+
+    case actionTypes.CREATE_POST_REQUEST:
+      return {
+        ...state,
+        isCreatingPost: true,
+      };
+
+    case actionTypes.SUCCESS_CREATE_POST:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+        isCreatingPost: false,
+      };
+
+    case actionTypes.ERROR_CREATE_POST:
+      return {
+        ...state,
+        isCreatingPost: false,
+        hasErrorCreatePost: true,
+        createPostErrorMessage: action.payload.message,
       };
 
     case actionTypes.FETCH_POST_BY_ID:
