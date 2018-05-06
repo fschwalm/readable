@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import Post from './post';
+import Post from '../../model/post';
 import { createPost } from '../../store/actions';
-import FormPost from './FormPost';
+import FormPost from '../FormPost';
 
 class NewPost extends React.Component {
   constructor(props) {
