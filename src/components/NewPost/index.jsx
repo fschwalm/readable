@@ -39,7 +39,7 @@ class NewPost extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.onCreatePost(new Post({ ...this.state }));
-    this.redirectToCreatedPostCategory();
+    // this.redirectToCreatedPostCategory();
   }
 
   redirectToCreatedPostCategory() {
@@ -98,9 +98,9 @@ class NewPost extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isCreatingPost: state.postsReducer.isCreatingPost,
-  hasErrorCreatePost: state.postsReducer.hasErrorCreatePost,
-  createPostErrorMessage: state.postsReducer.createPostErrorMessage,
+  isCreatingPost: state.httpReducer.isCreatingPost,
+  hasErrorCreatePost: state.httpReducer.hasErrorCreatePost,
+  createPostErrorMessage: state.httpReducer.createPostErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

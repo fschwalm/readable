@@ -31,9 +31,9 @@ class PostPage extends React.Component {
 
 const mapStateToProps = state => ({
   post: state.postsReducer.posts,
-  isFetchingPost: state.postsReducer.isFetchingPost,
-  hasErrorOnFetchPost: state.postsReducer.hasErrorOnFetchPost,
-  fetchPostErrorMessage: state.postsReducer.fetchPostErrorMessage,
+  isFetchingPost: state.httpReducer.isFetchingPost,
+  hasErrorOnFetchPost: state.httpReducer.hasErrorOnFetchPost,
+  fetchPostErrorMessage: state.httpReducer.fetchPostErrorMessage,
   comments: state.commentsReducer.comments,
   isFetchingComments: state.commentsReducer.isFetchingComments,
   hasErrorOnFetchComments: state.commentsReducer.hasErrorOnFetchComments,

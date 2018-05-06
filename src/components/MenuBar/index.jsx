@@ -25,9 +25,9 @@ class MenuBar extends Component {
 
 const mapStateToProps = state => ({
   categories: state.categoriesReducer.categories,
-  isFetchingCategories: state.categoriesReducer.isFetchingCategories,
-  hasErrorOnFetchCategories: state.categoriesReducer.hasErrorOnFetchCategories,
-  fetchCategoriesErrorMessage: state.categoriesReducer.fetchCategoriesErrorMessage,
+  isFetchingCategories: state.httpReducer.isFetchingCategories,
+  hasErrorOnFetchCategories: state.httpReducer.hasErrorOnFetchCategories,
+  fetchCategoriesErrorMessage: state.httpReducer.fetchCategoriesErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

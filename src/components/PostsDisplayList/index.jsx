@@ -37,9 +37,9 @@ class PostsDisplayList extends Component {
 const mapStateToProps = (state, ownProps) => ({
   category: ownProps.match.params.category || 'all',
   posts: state.postsReducer.posts,
-  isFetchingPosts: state.postsReducer.isFetchingPosts,
-  hasErrorOnFetchPosts: state.postsReducer.hasErrorOnFetchPosts,
-  fetchPostsErrorMessage: state.postsReducer.fetchPostsErrorMessage,
+  isFetchingPosts: state.httpReducer.isFetchingPosts,
+  hasErrorOnFetchPosts: state.httpReducer.hasErrorOnFetchPosts,
+  fetchPostsErrorMessage: state.httpReducer.fetchPostsErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
