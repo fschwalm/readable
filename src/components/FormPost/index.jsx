@@ -16,7 +16,8 @@ class FormPost extends React.Component {
   }
 
   async componentDidMount() {
-    this.props.onFetchCategories();
+    // TODO: Check if necessary
+    // this.props.onFetchCategories();
   }
 
   handleTitleChange(event) {
@@ -48,6 +49,7 @@ class FormPost extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
+          style={{ width: '30%' }}
           placeholder="Title"
           value={this.state.title}
           onChange={this.handleTitleChange}
@@ -76,12 +78,14 @@ class FormPost extends React.Component {
         <select value={this.state.category} onChange={this.handleCategoryChange}>
           <option value="">Select a Category</option>
           {this.props.categories.map(category => (
-            <option key={category.name} value={category.name}>{category.name}</option>
+            <option key={category.name} value={category.name}>
+              {category.name}
+            </option>
           ))}
         </select>
         <br />
         <br />
-        <button disabled={!isFormValid}>Create</button>
+        <button disabled={!isFormValid}>{this.props.actionLabel}</button>
       </form>
     );
   }

@@ -26,7 +26,7 @@ class NewPost extends React.Component {
     return (
       <div>
         <h1>Create a new Post:</h1>
-        <FormPost post={new Post({})} action={this.handleCreate} />
+        <FormPost post={new Post({})} action={this.handleCreate} actionLabel="Create"/>
         {this.props.isCreatingPost && <p>Creating...</p>}
       </div>
     );

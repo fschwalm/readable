@@ -8,6 +8,7 @@ export {
   fetchPostById,
   deletePostById,
   createPost,
+  editPostAction,
 } from './post';
 
 export { fetchCommentsByPostId } from './comments';

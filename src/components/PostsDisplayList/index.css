@@ -22,6 +22,12 @@
   top: 10px;
 }
 
+.edit-button {
+  position: absolute;
+  right: 40px;
+  top: 10px;
+}
+
 .delete-button button{
   cursor: pointer;
   background-color:red;

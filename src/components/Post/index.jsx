@@ -28,6 +28,11 @@ function Post({
         <span className="delete-button">
           <button onClick={() => onDeletePost(post.id)}>X</button>
         </span>
+        <span className="edit-button">
+          <Link to={`/posts/edit/${post.id}`}>
+            <button>edit</button>
+          </Link>
+        </span>
         {/* TODO: Try use a HOC for this logic */}
         {match.path === '/:category/:id' ? (
           <h3>{post.title}</h3>

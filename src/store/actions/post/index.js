@@ -5,7 +5,33 @@ import {
   getPostById,
   deletePost,
   addPost,
+  editPost,
 } from '../../../api/ReadableAPI';
+
+const editPostAction = post => async (dispatch) => {
+  dispatch(requestEditPost());
+  try {
+    const response = await editPost(post);
+    dispatch(updatePost(response));
+    dispatch(successfulEditPost);
+  } catch (error) {
+    dispatch(errorOnEditPost(error));
+  }
+};
+
+const requestEditPost = () => ({
+  type: actionTypes.EDIT_POST_REQUEST,
+});
+
+const successfulEditPost = post => ({
+  type: actionTypes.SUCCESS_EDIT_POST,
+  payload: post,
+});
+
+const errorOnEditPost = error => ({
+  type: actionTypes.ERROR_EDIT_POST,
+  error,
+});
 
 const createPost = post => async (dispatch) => {
   dispatch(requestCreatePost());
@@ -30,7 +56,6 @@ const errorOnCreatePost = error => ({
   type: actionTypes.ERROR_CREATE_POST,
   error,
 });
-
 
 const deletePostById = id => async (dispatch) => {
   dispatch(requestDeletePostById());
@@ -113,4 +138,11 @@ const updatePost = post => ({
   post,
 });
 
-export { incrementVotePost, decrementVotePost, fetchPostById, deletePostById, createPost };
+export {
+  incrementVotePost,
+  decrementVotePost,
+  fetchPostById,
+  deletePostById,
+  createPost,
+  editPostAction,
+};
