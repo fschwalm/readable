@@ -18,10 +18,17 @@ class PostPage extends React.Component {
     this.props.onFetchPostById(this.props.match.params.id);
     this.props.onfetchCommentsByPostId(this.props.match.params.id);
   }
+
+  componentDidUpdate() {
+    if (this.props.hasErrorOnFetchPost) {
+      this.props.history.push('/not-found');
+    }
+  }
+
   render() {
     return (
       <div className="post-list-container">
-        {/* TODO: Try find a better solution to post[0]*/}
+        {/* TODO: Try find a better solution to post[0] */}
         {this.props.isFetchingPost === false && <Post post={this.props.post[0]} />}
         <CommentList comments={this.props.comments} />
       </div>

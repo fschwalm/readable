@@ -10,6 +10,7 @@ import PostsDisplayList from './components/PostsDisplayList';
 import PostPage from './components/PostPage';
 import NewPost from './components/NewPost';
 import EditPost from './components/EditPost';
+import NotFound from './components/NotFound';
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="/" component={App} />
         <Switch>
           <Route path="/posts/new" component={NewPost} />
+          <Route path="/not-found" component={NotFound} />
           <Route path="/posts/edit/:id" component={EditPost} />
           <Route path="/:category/:id" component={PostPage} />
           <Route path="/:category?" component={PostsDisplayList} />

@@ -13,6 +13,12 @@ class EditPost extends React.Component {
     this.props.onFetchPostById(this.props.match.params.id);
   }
 
+  componentDidUpdate() {
+    if (this.props.hasErrorOnFetchPost) {
+      this.props.history.push('/not-found');
+    }
+  }
+
   handleEdit(updatedPost) {
     this.props.onEditPost(updatedPost);
   }
@@ -32,6 +38,7 @@ class EditPost extends React.Component {
 const mapStateToProps = state => ({
   post: state.postsReducer.posts,
   isFetchingPost: state.httpReducer.isFetchingPost,
+  hasErrorOnFetchPost: state.httpReducer.hasErrorOnFetchPost,
 });
 
 const mapDispatchToProps = dispatch => ({

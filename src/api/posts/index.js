@@ -2,7 +2,13 @@ import { api, headers } from '../apiUtils';
 
 export const getPosts = () => fetch(`${api}/posts`, { headers }).then(res => res.json());
 
-export const getPostById = id => fetch(`${api}/posts/${id}`, { headers }).then(res => res.json());
+export const getPostById = id =>
+  fetch(`${api}/posts/${id}`, { headers }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Failed to fetch');
+  });
 
 export const getAllPostsByCategory = category =>
   fetch(`${api}/${category}/posts/`, {

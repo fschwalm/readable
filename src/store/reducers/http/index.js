@@ -78,7 +78,7 @@ const httpReducer = (state = initialState, action) => {
         ...state,
         isFetchingPost: false,
         hasErrorOnFetchPost: true,
-        fetchPostErrorMessage: action.payload.message,
+        fetchPostErrorMessage: action.payload,
       };
 
     case actionTypes.SUCCESS_DELETE_POST_BY_ID:
