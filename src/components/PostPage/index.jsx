@@ -30,9 +30,14 @@ class PostPage extends React.Component {
     return (
       <div className="post-list-container">
         {/* TODO: Try find a better solution to post[0] */}
-        {this.props.isFetchingPost === false && <Post post={this.props.post[0]} />}
-        <br />
-        <NewComment />
+        {this.props.isFetchingPost === false &&
+          this.props.post[0] && (
+            <div>
+              <Post post={this.props.post[0]} />
+              <br />
+              <NewComment postId={this.props.post[0].id} />
+            </div>
+          )}
         <CommentList comments={this.props.comments} />
       </div>
     );

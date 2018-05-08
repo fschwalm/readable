@@ -13,4 +13,4 @@ export {
 
 export { fetchCommentsByPostId } from './comments';
 
-export { incrementVoteComment, decrementVoteComment, deleteCommentById } from './comment';
+export { incrementVoteComment, decrementVoteComment, deleteCommentById, createComment } from './comment';

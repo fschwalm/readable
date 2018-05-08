@@ -1,5 +1,34 @@
 import * as actionTypes from '../actionTypes';
-import { upVoteComment, downVoteComment, deleteComment } from '../../../api/ReadableAPI';
+import {
+  upVoteComment,
+  downVoteComment,
+  deleteComment,
+  addComment,
+} from '../../../api/ReadableAPI';
+
+const createComment = comment => async (dispatch) => {
+  dispatch(requestCreateComment());
+  try {
+    const response = await addComment(comment);
+    dispatch(successfulCreateComment(response));
+  } catch (error) {
+    dispatch(errorOnCreateComment(error));
+  }
+};
+
+const requestCreateComment = () => ({
+  type: actionTypes.CREATE_COMMENT_REQUEST,
+});
+
+const successfulCreateComment = comment => ({
+  type: actionTypes.SUCCESS_CREATE_COMMENT,
+  payload: comment,
+});
+
+const errorOnCreateComment = error => ({
+  type: actionTypes.ERROR_CREATE_COMMENT,
+  error,
+});
 
 const deleteCommentById = id => async (dispatch) => {
   dispatch(requestDeleteCommentById());
@@ -58,4 +87,4 @@ const updateComment = comment => ({
   comment,
 });
 
-export { incrementVoteComment, decrementVoteComment, deleteCommentById };
+export { incrementVoteComment, decrementVoteComment, deleteCommentById, createComment };

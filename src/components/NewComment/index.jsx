@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './index.css';
+import Comment from '../../model/comment';
+import { createComment } from '../../store/actions/';
 
 class NewComment extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class NewComment extends React.Component {
     this.state = {
       body: '',
       author: '',
+      parentId: this.props.postId,
     };
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
@@ -24,9 +27,17 @@ class NewComment extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.onCreateComment(new Comment({ ...this.state }));
+    this.clear();
+  }
+
+  clear() {
+    this.setState({ body: '', author: '' });
   }
 
   render() {
+    const { body, author } = this.state;
+    const isFormValid = body && author;
     return (
       <div className="new-comment-container">
         <form onSubmit={this.handleSubmit}>
@@ -34,7 +45,7 @@ class NewComment extends React.Component {
             rows="4"
             cols="50"
             placeholder="Write a comment"
-            value={this.state.body}
+            value={body}
             onChange={this.handleBodyChange}
             type="text"
           />
@@ -43,23 +54,18 @@ class NewComment extends React.Component {
           <input
             placeholder="Author"
             type="text"
-            value={this.state.author}
+            value={author}
             onChange={this.handleAuthorChange}
           />
-          <button>submit</button>
+          <button disabled={!isFormValid}>submit</button>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categoriesReducer.categories,
-  isFetchingCategories: state.httpReducer.isFetchingCategories,
-  hasErrorOnFetchCategories: state.httpReducer.hasErrorOnFetchCategories,
-  fetchCategoriesErrorMessage: state.httpReducer.fetchCategoriesErrorMessage,
+const mapDispatchToProps = dispatch => ({
+  onCreateComment: comment => dispatch(createComment(comment)),
 });
 
-const mapDispatchToProps = dispatch => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewComment);
+export default connect(null, mapDispatchToProps)(NewComment);
