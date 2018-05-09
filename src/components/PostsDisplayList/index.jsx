@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchPosts } from '../../store/actions';
+import { fetchPosts, sortPostByFilter } from '../../store/actions';
 import Post from '../Post';
-import './index.css';
 import Sort from '../Sort';
+
+import './index.css';
 
 class PostsDisplayList extends Component {
   async componentDidMount() {
@@ -18,14 +19,14 @@ class PostsDisplayList extends Component {
   }
 
   render() {
-    const { posts, category } = this.props;
+    const { posts, category, onSortPosts } = this.props;
     return (
       <div>
         <div className="post-list-container">
           <p>
             Showing {category}: {posts.length} posts.
           </p>
-          <Sort />
+          <Sort onSort={onSortPosts} />
           {posts.map(post => <Post key={post.id} post={post} />)}
         </div>
         <div className="add-post">
@@ -46,6 +47,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   onFetchPosts: category => dispatch(fetchPosts(category)),
+  onSortPosts: filter => dispatch(sortPostByFilter(filter)),
 });
 
 PostsDisplayList = withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsDisplayList));

@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { sortPostByFilter } from '../../store/actions';
 import * as SortTypes from '../../utils/sort/types';
 import { sortOptions } from '../../utils/sort/options';
 
@@ -18,7 +16,7 @@ class Sort extends React.Component {
     this.setState({ filter: event.target.value });
     // TODO: async set state?
     // Line 21 was executing before line 18 set the value on state.
-    this.props.onSortPosts(event.target.value);
+    this.props.onSort(event.target.value);
   }
 
   render() {
@@ -36,8 +34,4 @@ class Sort extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  onSortPosts: filter => dispatch(sortPostByFilter(filter)),
-});
-
-export default connect(null, mapDispatchToProps)(Sort);
+export default Sort;
