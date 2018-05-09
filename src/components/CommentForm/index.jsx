@@ -27,7 +27,7 @@ class CommentForm extends React.Component {
   }
 
   clear() {
-    this.setState({ body: '', author: '' });
+    this.setState(new CommentModel({ parentId: this.props.comment.parentId }));
   }
 
   render() {
