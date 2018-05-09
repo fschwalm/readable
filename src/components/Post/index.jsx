@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { incrementVotePost, decrementVotePost, deletePostById } from '../../store/actions';
 import Score from '../Score';
+import ReadableDate from '../ReadableDate';
 
 const propTypes = {
   post: PropTypes.shape({
@@ -14,8 +15,6 @@ const propTypes = {
 const defaultProps = {
   post: {},
 };
-
-const getReadableDate = timestamp => new Date(timestamp).toLocaleDateString();
 
 function Post({
   post, onIncrementVotePost, onDecrementVotePost, match, onDeletePost,
@@ -54,7 +53,7 @@ function Post({
           <span>By: </span>
           {post.author}
         </p>
-        <span>{getReadableDate(post.timestamp)}</span>
+        <ReadableDate timestamp={post.timestamp} />
       </article>
     </div>
   );

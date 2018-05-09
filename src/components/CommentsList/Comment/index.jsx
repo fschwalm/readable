@@ -10,6 +10,7 @@ import {
 } from '../../../store/actions';
 import CommentForm from '../../CommentForm';
 import CommentModel from '../../../model/comment';
+import ReadableDate from '../../ReadableDate';
 
 class Comment extends React.Component {
   constructor(props) {
@@ -51,6 +52,8 @@ class Comment extends React.Component {
               <span>By </span>
               {comment.author}
             </p>
+            <ReadableDate timestamp={comment.timestamp} />
+            <br />
             <Score
               score={comment.voteScore}
               onIncrementScore={() => onIncrementVoteComment(comment.id)}
