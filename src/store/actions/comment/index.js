@@ -4,7 +4,33 @@ import {
   downVoteComment,
   deleteComment,
   addComment,
+  editComment,
 } from '../../../api/ReadableAPI';
+
+const editCommentAction = comment => async (dispatch) => {
+  dispatch(requestEditComment());
+  try {
+    const response = await editComment(comment);
+    dispatch(updateComment(response));
+    dispatch(successfulEditComment);
+  } catch (error) {
+    dispatch(errorOnEditComment(error));
+  }
+};
+
+const requestEditComment = () => ({
+  type: actionTypes.EDIT_COMMENT_REQUEST,
+});
+
+const successfulEditComment = comment => ({
+  type: actionTypes.SUCCESS_EDIT_COMMENT,
+  payload: comment,
+});
+
+const errorOnEditComment = error => ({
+  type: actionTypes.ERROR_EDIT_COMMENT,
+  error,
+});
 
 const createComment = comment => async (dispatch) => {
   dispatch(requestCreateComment());
@@ -87,4 +113,10 @@ const updateComment = comment => ({
   comment,
 });
 
-export { incrementVoteComment, decrementVoteComment, deleteCommentById, createComment };
+export {
+  incrementVoteComment,
+  decrementVoteComment,
+  deleteCommentById,
+  createComment,
+  editCommentAction,
+};

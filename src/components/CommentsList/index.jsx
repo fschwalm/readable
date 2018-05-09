@@ -7,7 +7,7 @@ function CommentList({ comments }) {
       <h4>Comments</h4>
       <hr />
       <p>Showing: {comments.length} comments.</p>
-      {comments.map(comment => <Comment key={comment.id} {...comment} />)}
+      {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
     </div>
   );
 }

@@ -1,16 +1,25 @@
 import uuidv4 from 'uuid/v4';
 
-class Comment {
+class CommentModel {
   constructor({
-    id = uuidv4(), timestamp = Date.now(), body = '', author = '', parentId = '',
+    id = uuidv4(),
+    parentId = '',
+    timestamp = Date.now(),
+    body = '',
+    author = '',
+    voteScore = '1',
+    deleted = false,
+    parentDeleted = false,
   }) {
     this.id = id;
+    this.parentId = parentId;
     this.timestamp = timestamp;
     this.body = body;
     this.author = author;
-    this.timestamp = timestamp;
-    this.parentId = parentId;
+    this.voteScore = voteScore;
+    this.deleted = deleted;
+    this.parentDeleted = parentDeleted;
   }
 }
 
-export default Comment;
+export default CommentModel;
