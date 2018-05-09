@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { editPostAction, fetchPostById } from '../../store/actions';
-import FormPost from '../FormPost';
+import PostForm from '../PostForm';
 
 class EditPost extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class EditPost extends React.Component {
       <div>
         <h1>Edit Post:</h1>
         {this.props.isFetchingPost === false && (
-          <FormPost post={this.props.post[0]} action={this.handleEdit} actionLabel="Save" />
+          <PostForm post={this.props.post[0]} action={this.handleEdit} actionLabel="Save" />
         )}
       </div>
     );

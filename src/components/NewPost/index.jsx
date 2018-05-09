@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Post from '../../model/post';
 import { createPost } from '../../store/actions';
-import FormPost from '../FormPost';
+import PostForm from '../PostForm';
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class NewPost extends React.Component {
     return (
       <div>
         <h1>Create a new Post:</h1>
-        <FormPost post={new Post({})} action={this.handleCreate} actionLabel="Create" />
+        <PostForm post={new Post({})} action={this.handleCreate} actionLabel="Create" />
         {this.props.isCreatingPost && <p>Creating...</p>}
       </div>
     );

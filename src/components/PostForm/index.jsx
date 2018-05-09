@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../store/actions';
 
-class FormPost extends React.Component {
+class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -102,4 +102,4 @@ const mapDispatchToProps = dispatch => ({
   onFetchCategories: () => dispatch(fetchCategories()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormPost);
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
