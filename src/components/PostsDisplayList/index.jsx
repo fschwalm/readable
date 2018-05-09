@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { fetchPosts } from '../../store/actions';
 import Post from '../Post';
 import './index.css';
+import Sort from '../Sort';
 
 class PostsDisplayList extends Component {
   async componentDidMount() {
@@ -24,6 +25,7 @@ class PostsDisplayList extends Component {
           <p>
             Showing {category}: {posts.length} posts.
           </p>
+          <Sort />
           {posts.map(post => <Post key={post.id} post={post} />)}
         </div>
         <div className="add-post">

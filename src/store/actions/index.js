@@ -1,6 +1,6 @@
 export { fetchCategories } from './categories';
 
-export { fetchPosts } from './posts';
+export { fetchPosts, sortPostByFilter } from './posts';
 
 export {
   incrementVotePost,
