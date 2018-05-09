@@ -1,5 +1,4 @@
 import * as actionTypes from '../../actions/actionTypes';
-import { getSortFunctionByFilter } from '../../../utils/sort';
 
 const initialState = {
   posts: [],
@@ -46,12 +45,6 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         isDeletingPost: false,
         posts: state.posts.filter(p => p.id !== action.payload),
-      };
-
-    case actionTypes.SORT_POSTS:
-      return {
-        ...state,
-        posts: [...state.posts].sort(getSortFunctionByFilter(action.filter)),
       };
 
     default:

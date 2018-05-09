@@ -2,22 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Comment from './Comment';
 import Sort from '../Sort';
-import { sortCommentsByFilter } from '../../store/actions';
+import { setCommentSortMode } from '../../store/actions/sort';
 
-function CommentList({ comments, onSortComments }) {
+function CommentList({ comments, onChangeCommentSortMode, commentsSortMode }) {
   return (
     <div>
       <h4>Comments</h4>
       <hr />
       <p>Showing: {comments.length} comments.</p>
-      <Sort onSort={onSortComments} />
+      <Sort currentSortMode={commentsSortMode} onChangeSortMode={onChangeCommentSortMode} />
       {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
     </div>
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  onSortComments: filter => dispatch(sortCommentsByFilter(filter)),
+const mapStateToProps = state => ({
+  commentsSortMode: state.sortReducer.comments,
 });
 
-export default connect(null, mapDispatchToProps)(CommentList);
+const mapDispatchToProps = dispatch => ({
+  onChangeCommentSortMode: filter => dispatch(setCommentSortMode(filter)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

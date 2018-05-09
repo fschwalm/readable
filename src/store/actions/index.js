@@ -1,6 +1,6 @@
 export { fetchCategories } from './categories';
 
-export { fetchPosts, sortPostByFilter } from './posts';
+export { fetchPosts } from './posts';
 
 export {
   incrementVotePost,
@@ -11,7 +11,7 @@ export {
   editPostAction,
 } from './post';
 
-export { fetchCommentsByPostId, sortCommentsByFilter } from './comments';
+export { fetchCommentsByPostId } from './comments';
 
 export {
   incrementVoteComment,
@@ -20,3 +20,5 @@ export {
   createComment,
   editCommentAction,
 } from './comment';
+
+export { setPostSortMode, setCommentSortMode } from './sort';

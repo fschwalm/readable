@@ -6,7 +6,6 @@ const fetchCommentsByPostId = id => async (dispatch) => {
   try {
     const response = await getCommentsByPostId(id);
     dispatch(receiveComments(response));
-    dispatch(sortCommentsByFilter('MOST_RECENT'));
   } catch (error) {
     dispatch(errorOnFetchComments(error));
   }
@@ -26,9 +25,4 @@ const errorOnFetchComments = payload => ({
   payload,
 });
 
-const sortCommentsByFilter = filter => ({
-  type: actionTypes.SORT_COMMENTS,
-  filter,
-});
-
-export { fetchCommentsByPostId, sortCommentsByFilter };
+export { fetchCommentsByPostId };

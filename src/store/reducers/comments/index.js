@@ -1,5 +1,4 @@
 import * as actionTypes from '../../actions/actionTypes';
-import { getSortFunctionByFilter } from '../../../utils/sort';
 
 const initialState = {
   isFetchingComments: false,
@@ -67,12 +66,6 @@ const commentsReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [...state.comments, action.payload],
-      };
-
-    case actionTypes.SORT_COMMENTS:
-      return {
-        ...state,
-        comments: [...state.comments].sort(getSortFunctionByFilter(action.filter)),
       };
 
     default:

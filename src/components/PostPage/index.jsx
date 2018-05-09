@@ -5,6 +5,7 @@ import CommentList from '../CommentsList';
 import NewComment from '../NewComment';
 import Post from '../Post';
 import { fetchPostById, fetchCommentsByPostId } from '../../store/actions';
+import { getSortFunctionByFilter } from '../../utils/sort';
 
 const propTypes = {
   isFetchingPost: PropTypes.bool,
@@ -49,7 +50,7 @@ const mapStateToProps = state => ({
   isFetchingPost: state.httpReducer.isFetchingPost,
   hasErrorOnFetchPost: state.httpReducer.hasErrorOnFetchPost,
   fetchPostErrorMessage: state.httpReducer.fetchPostErrorMessage,
-  comments: state.commentsReducer.comments,
+  comments: [...state.commentsReducer.comments].sort(getSortFunctionByFilter(state.sortReducer.comments)),
   isFetchingComments: state.commentsReducer.isFetchingComments,
   hasErrorOnFetchComments: state.commentsReducer.hasErrorOnFetchComments,
   fetchCommentsErrorMessage: state.commentsReducer.fetchCommentsErrorMessage,

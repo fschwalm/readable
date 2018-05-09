@@ -11,8 +11,6 @@ const fetchPosts = category => async (dispatch) => {
       response = await getAllPostsByCategory(category);
     }
     dispatch(receivePosts(response));
-    // TODO: How i can get a selected category?
-    dispatch(sortPostByFilter('MOST_RECENT'));
   } catch (error) {
     dispatch(errorOnFetchPosts(error));
   }
@@ -32,9 +30,4 @@ const errorOnFetchPosts = payload => ({
   payload,
 });
 
-const sortPostByFilter = filter => ({
-  type: actionTypes.SORT_POSTS,
-  filter,
-});
-
-export { fetchPosts, sortPostByFilter };
+export { fetchPosts };

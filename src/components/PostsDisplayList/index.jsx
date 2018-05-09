@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchPosts, sortPostByFilter } from '../../store/actions';
+import { fetchPosts, setPostSortMode } from '../../store/actions';
 import Post from '../Post';
 import Sort from '../Sort';
 
 import './index.css';
+import { getSortFunctionByFilter } from '../../utils/sort';
 
 class PostsDisplayList extends Component {
   async componentDidMount() {
@@ -19,14 +20,16 @@ class PostsDisplayList extends Component {
   }
 
   render() {
-    const { posts, category, onSortPosts } = this.props;
+    const {
+      posts, category, onChangePostSortMode, postsSortMode,
+    } = this.props;
     return (
       <div>
         <div className="post-list-container">
           <p>
             Showing {category}: {posts.length} posts.
           </p>
-          <Sort onSort={onSortPosts} />
+          <Sort currentSortMode={postsSortMode} onChangeSortMode={onChangePostSortMode} />
           {posts.map(post => <Post key={post.id} post={post} />)}
         </div>
         <div className="add-post">
@@ -39,15 +42,16 @@ class PostsDisplayList extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   category: ownProps.match.params.category || 'all',
-  posts: state.postsReducer.posts,
+  posts: [...state.postsReducer.posts].sort(getSortFunctionByFilter(state.sortReducer.posts)),
   isFetchingPosts: state.httpReducer.isFetchingPosts,
   hasErrorOnFetchPosts: state.httpReducer.hasErrorOnFetchPosts,
   fetchPostsErrorMessage: state.httpReducer.fetchPostsErrorMessage,
+  postsSortMode: state.sortReducer.posts,
 });
 
 const mapDispatchToProps = dispatch => ({
   onFetchPosts: category => dispatch(fetchPosts(category)),
-  onSortPosts: filter => dispatch(sortPostByFilter(filter)),
+  onChangePostSortMode: filter => dispatch(setPostSortMode(filter)),
 });
 
 PostsDisplayList = withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsDisplayList));
