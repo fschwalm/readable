@@ -11,7 +11,7 @@ export {
   editPostAction,
 } from './post';
 
-export { fetchCommentsByPostId } from './comments';
+export { fetchCommentsByPostId, sortCommentsByFilter } from './comments';
 
 export {
   incrementVoteComment,
