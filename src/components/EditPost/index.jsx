@@ -21,12 +21,14 @@ class EditPost extends React.Component {
 
   handleEdit(updatedPost) {
     this.props.onEditPost(updatedPost);
+    this.props.history.goBack();
   }
 
   render() {
     return (
       <div>
         <h1>Edit Post:</h1>
+        {/* TODO: Try find a better solution to post[0] */}
         {this.props.isFetchingPost === false && (
           <PostForm post={this.props.post[0]} action={this.handleEdit} actionLabel="Save" />
         )}
