@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from './types';
 
 const setPostSortMode = filter => ({
   type: actionTypes.SET_SORT_MODE_POSTS,

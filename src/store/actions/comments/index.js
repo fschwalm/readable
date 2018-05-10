@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from './types';
 import { getCommentsByPostId } from '../../../api/ReadableAPI';
 
 const fetchCommentsByPostId = id => async (dispatch) => {

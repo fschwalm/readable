@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from './types';
 import { getAllCategories } from '../../../api/ReadableAPI';
 
 const fetchCategories = () => async (dispatch) => {

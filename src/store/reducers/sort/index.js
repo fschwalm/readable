@@ -1,4 +1,4 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as actionTypes from '../../actions/sort/types';
 import * as SortTypes from '../../../utils/sort/types';
 
 const initialState = {

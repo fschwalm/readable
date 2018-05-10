@@ -1,4 +1,5 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as actionTypesComments from '../../actions/comments/types';
+import * as actionTypesComment from '../../actions/comment/types';
 
 const initialState = {
   isFetchingComments: false,
@@ -14,20 +15,20 @@ const initialState = {
 
 const commentsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_COMMENTS_BY_POST_ID:
+    case actionTypesComments.FETCH_COMMENTS_BY_POST_ID:
       return {
         ...state,
         isFetchingComments: true,
       };
 
-    case actionTypes.RECEIVE_COMMENTS_BY_POST_ID:
+    case actionTypesComments.RECEIVE_COMMENTS_BY_POST_ID:
       return {
         ...state,
         comments: action.payload,
         isFetchingComments: false,
       };
 
-    case actionTypes.ERROR_ON_FETCH_COMMENTS:
+    case actionTypesComments.ERROR_ON_FETCH_COMMENTS:
       return {
         ...state,
         isFetchingComments: false,
@@ -35,7 +36,7 @@ const commentsReducer = (state = initialState, action) => {
         fetchCommentsErrorMessage: action.payload.message,
       };
 
-    case actionTypes.UPDATE_COMMENT:
+    case actionTypesComment.UPDATE_COMMENT:
       return {
         ...state,
         comments: state.comments.map((comment) => {
@@ -49,20 +50,20 @@ const commentsReducer = (state = initialState, action) => {
         }),
       };
 
-    case actionTypes.SUCCESS_DELETE_COMMENT_BY_ID:
+    case actionTypesComment.SUCCESS_DELETE_COMMENT_BY_ID:
       return {
         ...state,
         isDeletingComment: false,
         comments: state.comments.filter(c => c.id !== action.payload),
       };
 
-    case actionTypes.DELETE_COMMENT_BY_ID:
+    case actionTypesComment.DELETE_COMMENT_BY_ID:
       return {
         ...state,
         isDeletingComment: true,
       };
 
-    case actionTypes.SUCCESS_CREATE_COMMENT:
+    case actionTypesComment.SUCCESS_CREATE_COMMENT:
       return {
         ...state,
         comments: [...state.comments, action.payload],

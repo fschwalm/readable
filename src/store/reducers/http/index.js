@@ -1,4 +1,5 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as postsActionTypes from '../../actions/posts/types';
+import * as postActionTypes from '../../actions/post/types';
 
 const initialState = {
   isFetchingPost: false,
@@ -20,20 +21,20 @@ const initialState = {
 
 const httpReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_POSTS:
+    case postsActionTypes.FETCH_POSTS:
       return {
         ...state,
         isFetchingPosts: true,
       };
 
-    case actionTypes.RECEIVE_POSTS:
+    case postsActionTypes.RECEIVE_POSTS:
       return {
         ...state,
         posts: action.payload,
         isFetchingPosts: false,
       };
 
-    case actionTypes.ERROR_ON_FETCH_POSTS:
+    case postsActionTypes.ERROR_ON_FETCH_POSTS:
       return {
         ...state,
         isFetchingPosts: false,
@@ -41,19 +42,19 @@ const httpReducer = (state = initialState, action) => {
         fetchPostsErrorMessage: action.payload.message,
       };
 
-    case actionTypes.CREATE_POST_REQUEST:
+    case postActionTypes.CREATE_POST_REQUEST:
       return {
         ...state,
         isCreatingPost: true,
       };
 
-    case actionTypes.SUCCESS_CREATE_POST:
+    case postActionTypes.SUCCESS_CREATE_POST:
       return {
         ...state,
         isCreatingPost: false,
       };
 
-    case actionTypes.ERROR_CREATE_POST:
+    case postActionTypes.ERROR_CREATE_POST:
       return {
         ...state,
         isCreatingPost: false,
@@ -61,19 +62,19 @@ const httpReducer = (state = initialState, action) => {
         createPostErrorMessage: action.payload.message,
       };
 
-    case actionTypes.FETCH_POST_BY_ID:
+    case postActionTypes.FETCH_POST_BY_ID:
       return {
         ...state,
         isFetchingPost: true,
       };
 
-    case actionTypes.RECEIVE_POST_BY_ID:
+    case postActionTypes.RECEIVE_POST_BY_ID:
       return {
         ...state,
         isFetchingPost: false,
       };
 
-    case actionTypes.ERROR_ON_FETCH_POST_BY_ID:
+    case postActionTypes.ERROR_ON_FETCH_POST_BY_ID:
       return {
         ...state,
         isFetchingPost: false,
@@ -81,13 +82,13 @@ const httpReducer = (state = initialState, action) => {
         fetchPostErrorMessage: action.payload,
       };
 
-    case actionTypes.SUCCESS_DELETE_POST_BY_ID:
+    case postActionTypes.SUCCESS_DELETE_POST_BY_ID:
       return {
         ...state,
         isDeletingPost: false,
       };
 
-    case actionTypes.DELETE_POST_BY_ID:
+    case postActionTypes.DELETE_POST_BY_ID:
       return {
         ...state,
         isDeletingPost: true,

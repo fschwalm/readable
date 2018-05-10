@@ -1,4 +1,5 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as postsActionTypes from '../../actions/posts/types';
+import * as postActionTypes from '../../actions/post/types';
 
 const initialState = {
   posts: [],
@@ -6,27 +7,27 @@ const initialState = {
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.RECEIVE_POSTS:
+    case postsActionTypes.RECEIVE_POSTS:
       return {
         ...state,
         posts: action.payload,
       };
 
-    case actionTypes.SUCCESS_CREATE_POST:
+    case postActionTypes.SUCCESS_CREATE_POST:
       return {
         ...state,
         posts: [...state.posts, action.payload],
         isCreatingPost: false,
       };
 
-    case actionTypes.RECEIVE_POST_BY_ID:
+    case postActionTypes.RECEIVE_POST_BY_ID:
       return {
         ...state,
         posts: action.payload,
         isFetchingPost: false,
       };
 
-    case actionTypes.UPDATE_POST:
+    case postActionTypes.UPDATE_POST:
       return {
         ...state,
         posts: state.posts.map((post) => {
@@ -40,7 +41,7 @@ const postsReducer = (state = initialState, action) => {
         }),
       };
 
-    case actionTypes.SUCCESS_DELETE_POST_BY_ID:
+    case postActionTypes.SUCCESS_DELETE_POST_BY_ID:
       return {
         ...state,
         isDeletingPost: false,

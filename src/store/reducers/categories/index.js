@@ -1,4 +1,4 @@
-import * as actionTypes from '../../actions/actionTypes';
+import * as actionTypes from '../../actions/categories/types';
 
 const initialState = {
   isFetchingCategories: false,
