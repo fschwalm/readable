@@ -8,18 +8,13 @@ class NewPost extends React.Component {
   constructor(props) {
     super(props);
     this.handleCreate = this.handleCreate.bind(this);
-    this.redirectToCreatedPostCategory = this.redirectToCreatedPostCategory.bind(this);
   }
 
   handleCreate(post) {
     // TODO: Without redirect it needs generate a new post after the create
     // because the id
     this.props.onCreatePost(post);
-    this.redirectToCreatedPostCategory(post.category);
-  }
-
-  redirectToCreatedPostCategory(category) {
-    this.props.history.push(`/${category}`);
+    this.props.history.goBack()
   }
 
   render() {
