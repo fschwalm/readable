@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCategories } from '../../store/actions';
+import './index.css';
 
 class MenuBar extends Component {
   async componentDidMount() {
@@ -11,14 +12,22 @@ class MenuBar extends Component {
   render() {
     const { categories } = this.props;
     return (
-      <div>
-        <NavLink to="/">all</NavLink>
+      <ul>
+        <li>
+          <NavLink activeClassName="active" exact to="/">
+            all
+          </NavLink>
+        </li>
         {categories.map(category => (
-          <div key={category.name}>
-            <NavLink to={`/${category.path}`}>{category.name} </NavLink>
-          </div>
+          <React.Fragment key={category.name}>
+            <li>
+              <NavLink activeClassName="active" to={`/${category.path}`}>
+                {category.name}
+              </NavLink>
+            </li>
+          </React.Fragment>
         ))}
-      </div>
+      </ul>
     );
   }
 }

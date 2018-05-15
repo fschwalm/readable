@@ -11,7 +11,7 @@ const App = () => (
   <div className="App">
     <Router>
       <React.Fragment>
-        <MenuBar />
+        <Route path="/" component={MenuBar} />
         <Switch>
           <Route path="/posts/new" component={NewPost} />
           <Route path="/not-found" component={NotFound} />
