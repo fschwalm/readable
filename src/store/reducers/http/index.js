@@ -2,7 +2,7 @@ import * as postsActionTypes from '../../actions/posts/types';
 import * as postActionTypes from '../../actions/post/types';
 
 const initialState = {
-  isFetchingPost: false,
+  isFetchingPost: true,
   hasErrorOnFetchPost: false,
   fetchPostErrorMessage: '',
 
@@ -66,12 +66,14 @@ const httpReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetchingPost: true,
+        hasErrorOnFetchPost: false,
       };
 
     case postActionTypes.RECEIVE_POST_BY_ID:
       return {
         ...state,
         isFetchingPost: false,
+        hasErrorOnFetchPost: false,
       };
 
     case postActionTypes.ERROR_ON_FETCH_POST_BY_ID:

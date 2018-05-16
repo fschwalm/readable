@@ -85,7 +85,11 @@ const fetchPostById = id => async (dispatch) => {
   dispatch(requestPostById());
   try {
     const response = await getPostById(id);
-    dispatch(receivePostById(response));
+    if (Object.keys(response).length) {
+      dispatch(receivePostById(response));
+    } else {
+      dispatch(errorOnFethPostById(response));
+    }
   } catch (error) {
     dispatch(errorOnFethPostById(error));
   }

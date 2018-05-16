@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CommentList from '../CommentsList';
 import NewComment from '../NewComment';
@@ -28,18 +29,22 @@ class PostPage extends React.Component {
   }
 
   render() {
+    const canRenderPost =
+      !this.props.isFetchingPost && !this.props.hasErrorOnFetchPost && this.props.post[0];
+    const isdeletedAfterRender = !this.props.post[0] && !this.props.isFetchingPost;
+
     return (
       <div className="post-list-container">
-        {/* TODO: Try find a better solution to post[0] */}
-        {this.props.isFetchingPost === false &&
-          this.props.post[0] && (
-            <div>
-              <Post post={this.props.post[0]} />
-              <br />
-              <NewComment postId={this.props.post[0].id} />
-            </div>
-          )}
-        <CommentList comments={this.props.comments} />
+        {canRenderPost && (
+          <React.Fragment>
+            <Post post={this.props.post[0]} />
+            <NewComment postId={this.props.post[0].id} />
+            <CommentList comments={this.props.comments} />
+          </React.Fragment>
+        )}
+        {isdeletedAfterRender && (
+          <Redirect to="/" />
+        )}
       </div>
     );
   }
