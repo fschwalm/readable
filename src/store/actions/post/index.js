@@ -82,7 +82,7 @@ const errorOnDeletePostById = error => ({
 });
 
 const fetchPostById = id => async (dispatch) => {
-  dispatch(requestPostById());
+  dispatch(requestPostById(id));
   try {
     const response = await getPostById(id);
     if (Object.keys(response).length) {
@@ -95,8 +95,9 @@ const fetchPostById = id => async (dispatch) => {
   }
 };
 
-const requestPostById = () => ({
+const requestPostById = id => ({
   type: actionTypes.FETCH_POST_BY_ID,
+  id,
 });
 
 const receivePostById = post => ({

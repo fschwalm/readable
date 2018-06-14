@@ -1,28 +1,9 @@
-import * as actionTypes from './types';
 import { getAllCategories } from '../../../api/ReadableAPI';
+import { FETCH_CATEGORIES, RECEIVE_CATEGORIES, ERROR_ON_FETCH_CATEGORIES } from './types';
 
-const fetchCategories = () => async (dispatch) => {
-  dispatch(requestCategories());
-  try {
-    const response = await getAllCategories();
-    dispatch(receiveCategories(response));
-  } catch (error) {
-    dispatch(errorOnFetchCategories(error));
-  }
-};
-
-const requestCategories = () => ({
-  type: actionTypes.FETCH_CATEGORIES,
+const fetchCategories = () => ({
+  types: [FETCH_CATEGORIES, RECEIVE_CATEGORIES, ERROR_ON_FETCH_CATEGORIES],
+  callAPI: () => getAllCategories(),
 });
 
-const receiveCategories = payload => ({
-  type: actionTypes.RECEIVE_CATEGORIES,
-  payload,
-});
-
-const errorOnFetchCategories = payload => ({
-  type: actionTypes.ERROR_ON_FETCH_CATEGORIES,
-  payload,
-});
-
-export { fetchCategories, requestCategories, receiveCategories, errorOnFetchCategories };
+export { fetchCategories };

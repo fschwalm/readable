@@ -18,7 +18,7 @@ const categoriesReducer = (state = initialState, action) => {
     case actionTypes.RECEIVE_CATEGORIES:
       return {
         ...state,
-        categories: action.payload.categories,
+        categories: action.response.categories,
         isFetchingCategories: false,
       };
 
